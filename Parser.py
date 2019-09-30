@@ -103,7 +103,7 @@ def expr(tokens):
         rhs = or_expr(tokens)
         lhs = Arrow(lhs, rhs)
     if tokens[0].ttype not in follow:
-        raise ParseException(token.pos,follow,token.val)
+        raise ParseException(tokens[0].pos,follow,tokens[0].val)
     return lhs
 
 def or_expr(tokens):
@@ -114,7 +114,7 @@ def or_expr(tokens):
         rhs = and_expr(tokens)
         lhs = Or(lhs, rhs)
     if tokens[0].ttype not in follow:
-        raise ParseException(token.pos,follow,token.val)
+        raise ParseException(tokens[0].pos,follow,tokens[0].val)
     return lhs
 
 def and_expr(tokens):
@@ -125,7 +125,7 @@ def and_expr(tokens):
         rhs = not_expr(tokens)
         lhs = And(lhs, rhs)
     if tokens[0].ttype not in follow:
-        raise ParseException(token.pos,follow,token.val)
+        raise ParseException(tokens[0].pos,follow,tokens[0].val)
     return lhs
 
 
@@ -139,7 +139,7 @@ def not_expr(tokens):
     else:
         e = term(tokens)
     if tokens[0].ttype not in follow:
-        raise ParseException(token.pos,follow,token.val)
+        raise ParseException(tokens[0].pos,follow,tokens[0].val)
     return e
 
 def term(tokens):
@@ -157,12 +157,12 @@ def term(tokens):
         tokens.pop(0)
         e = expr(tokens)
         if tokens[0].ttype != TType.TRPAREN:
-            raise ParseException(token.pos,[TType.TRPAREN],token.val)
+            raise ParseException(tokens[0].pos,[TType.TRPAREN],tokens[0].val)
     else:
-        raise ParseException(token.pos,first,token.val)
+        raise ParseException(tokens[0].pos,first,tokens[0].val)
 
     tokens.pop(0)
 
     if tokens[0].ttype not in follow:
-        raise ParseException(token.pos,follow,token.val)
+        raise ParseException(tokens[0].pos,follow,tokens[0].val)
     return e
