@@ -106,8 +106,7 @@ class And():
         return Node.AND
 
     def eval(self, env):
-        return self.lhs.eval(env) and self.rhs.eval(env)
-        #raise EvalException("And")
+        raise EvalException("And")
 
 ############################################################################################
 # An Or node represents the expression a || b
