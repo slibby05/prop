@@ -4,12 +4,12 @@
 This project demonstrates how we can represent propositional logic formulas.
 
 You can run this with 
-> python3 main.py "expression"
+> python3 Main.py "expression"
 
 You must put quotes around the expression,
 otherwise the command line will be very confused.
 example:
-> python3 main.py "(a && b) || ~c"
+> python3 Main.py "(a && b) || ~c"
 
 This program will support the following expressions
 * a && b - And
