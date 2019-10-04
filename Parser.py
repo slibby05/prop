@@ -98,9 +98,9 @@ def lex(text):
 def expr(tokens):
     follow = [TType.TEOF, TType.TRPAREN]
     lhs = or_expr(tokens)
-    while tokens[0].ttype == TType.TARROW:
+    if tokens[0].ttype == TType.TARROW:
         tokens.pop(0)
-        rhs = or_expr(tokens)
+        rhs = expr(tokens)
         lhs = Arrow(lhs, rhs)
     if tokens[0].ttype not in follow:
         raise ParseException(tokens[0].pos,follow,tokens[0].val)
